@@ -1,0 +1,76 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int acc;
+    string name;
+    float bal;
+    Node *next;
+};
+
+Node *head = NULL;
+
+void insert() {
+    Node *p = new Node;
+    cin >> p->acc >> p->name >> p->bal;
+    p->next = head;
+    head = p;
+}
+
+void deleteAcc() {
+    int x;
+    cin >> x;
+    Node *p = head, *q = NULL;
+
+    while (p && p->acc != x) {
+        q = p;
+        p = p->next;
+    }
+
+    if (!p) return;
+    if (q) q->next = p->next;
+    else head = p->next;
+    delete p;
+}
+
+void search() {
+    int x;
+    cin >> x;
+    Node *p = head;
+
+    while (p) {
+        if (p->acc == x) {
+            cout << p->acc << " " << p->name
+                 << " " << p->bal << endl;
+            return;
+        }
+        p = p->next;
+    }
+    cout << "Not Found";
+}
+
+void display() {
+    Node *p = head;
+    while (p) {
+        cout << p->acc << " " << p->name
+             << " " << p->bal << endl;
+        p = p->next;
+    }
+}
+
+int main() {
+    int ch;
+
+    do {
+        cout << "\n1.Insert  2.Delete  3.Search  4.Display  5.Exit\n";
+        cin >> ch;
+
+        if (ch == 1) insert();
+        else if (ch == 2) deleteAcc();
+        else if (ch == 3) search();
+        else if (ch == 4) display();
+
+    } while (ch != 5);
+
+    return 0;
+}
