@@ -1,118 +1,76 @@
  #include <iostream>
 using namespace std;
 
-struct Node
-{
-    int data;
+struct Node {
+    int acc;
+    string name;
+    float bal;
     Node *next;
 };
 
-Node *top = NULL;
-Node *front = NULL;
-Node *rear = NULL;
+Node *head = NULL;
 
-void push()
-{
+void insert() {
     Node *p = new Node;
-    cout << "Enter data: ";
-    cin >> p->data;
-    p->next = top;
-    top = p;
+    cin >> p->acc >> p->name >> p->bal;
+    p->next = head;
+    head = p;
 }
 
-void pop()
-{
-    if (top == NULL)
-        cout << "Stack Empty\n";
-    else
-    {
-        Node *p = top;
-        cout << "Popped: " << p->data << endl;
-        top = top->next;
-        delete p;
-    }
-}
+void deleteAcc() {
+    int x;
+    cin >> x;
+    Node *p = head, *q = NULL;
 
-void displayStack()
-{
-    Node *p = top;
-    cout << "Stack: ";
-    while (p != NULL)
-    {
-        cout << p->data << " ";
+    while (p && p->acc != x) {
+        q = p;
         p = p->next;
     }
-    cout << endl;
+
+    if (!p) return;
+    if (q) q->next = p->next;
+    else head = p->next;
+    delete p;
 }
 
-void enqueue()
-{
-    Node *p = new Node;
-    cout << "Enter data: ";
-    cin >> p->data;
-    p->next = NULL;
+void search() {
+    int x;
+    cin >> x;
+    Node *p = head;
 
-    if (front == NULL)
-        front = rear = p;
-    else
-    {
-        rear->next = p;
-        rear = p;
-    }
-}
-
-void dequeue()
-{
-    if (front == NULL)
-        cout << "Queue Empty\n";
-    else
-    {
-        Node *p = front;
-        cout << "Dequeued: " << p->data << endl;
-        front = front->next;
-
-        if (front == NULL)
-            rear = NULL;
-
-        delete p;
-    }
-}
-
-void displayQueue()
-{
-    Node *p = front;
-    cout << "Queue: ";
-    while (p != NULL)
-    {
-        cout << p->data << " ";
+    while (p) {
+        if (p->acc == x) {
+            cout << p->acc << " " << p->name
+                 << " " << p->bal << endl;
+            return;
+        }
         p = p->next;
     }
-    cout << endl;
+    cout << "Not Found";
 }
 
-int main()
-{
+void display() {
+    Node *p = head;
+    while (p) {
+        cout << p->acc << " " << p->name
+             << " " << p->bal << endl;
+        p = p->next;
+    }
+}
+
+int main() {
     int ch;
 
-    do
-    {
-        cout << "\n1.Push\n2.Pop\n3.Display Stack";
-        cout << "\n4.Enqueue\n5.Dequeue\n6.Display Queue";
-        cout << "\n7.Exit\nEnter choice: ";
+    do {
+        cout << "\n1.Insert  2.Delete  3.Search  4.Display  5.Exit\n";
         cin >> ch;
 
-        switch (ch)
-        {
-        case 1: push(); break;
-        case 2: pop(); break;
-        case 3: displayStack(); break;
-        case 4: enqueue(); break;
-        case 5: dequeue(); break;
-        case 6: displayQueue(); break;
-        case 7: cout << "Program Ended\n"; break;
-        default: cout << "Invalid Choice\n";
-        }
-    } while (ch != 7);
+        if (ch == 1) insert();
+        else if (ch == 2) deleteAcc();
+        else if (ch == 3) search();
+        else if (ch == 4) display();
+
+    } while (ch != 5);
 
     return 0;
 }
