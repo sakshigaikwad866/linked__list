@@ -13,16 +13,17 @@ To perform insertion, deletion, and searching operations.
 To display all bank account records.
 To understand pointers and dynamic memory allocation.
 
-## Algorithm
+## AlgorithM
 
-Start and initialize head = NULL.
-Create a node containing the account number, account holder name, and balance.
-For insertion, connect the new node at the beginning of the list.
-For deletion, search for the required account number and adjust the links to remove the node.
-For searching, traverse the list and compare account numbers.
-For display, traverse from head to NULL and print all account records.
-Repeat the operations according to the user's choice.
-Stop.
+1. Start and initialize "head = NULL".
+2. Create a node containing the account number, account holder name, and balance.
+3. Insert the new node at the beginning of the linked list.
+4. Search for the required account number and delete the node by adjusting links.
+5. Traverse the linked list to search for an account number.
+6. Display all account records by traversing from "head" to "NULL".
+7. Repeat operations according to the user's choice.
+8. Stop.
+
 
 ## Flowchart: Linked List Operations
 
