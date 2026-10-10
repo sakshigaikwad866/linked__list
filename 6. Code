@@ -1,0 +1,118 @@
+#include <iostream>
+using namespace std;
+
+struct Node
+{
+    int data;
+    Node *next;
+};
+
+Node *top = NULL;
+Node *front = NULL;
+Node *rear = NULL;
+
+void push()
+{
+    Node *p = new Node;
+    cout << "Enter data: ";
+    cin >> p->data;
+    p->next = top;
+    top = p;
+}
+
+void pop()
+{
+    if (top == NULL)
+        cout << "Stack Empty\n";
+    else
+    {
+        Node *p = top;
+        cout << "Popped: " << p->data << endl;
+        top = top->next;
+        delete p;
+    }
+}
+
+void displayStack()
+{
+    Node *p = top;
+    cout << "Stack: ";
+    while (p != NULL)
+    {
+        cout << p->data << " ";
+        p = p->next;
+    }
+    cout << endl;
+}
+
+void enqueue()
+{
+    Node *p = new Node;
+    cout << "Enter data: ";
+    cin >> p->data;
+    p->next = NULL;
+
+    if (front == NULL)
+        front = rear = p;
+    else
+    {
+        rear->next = p;
+        rear = p;
+    }
+}
+
+void dequeue()
+{
+    if (front == NULL)
+        cout << "Queue Empty\n";
+    else
+    {
+        Node *p = front;
+        cout << "Dequeued: " << p->data << endl;
+        front = front->next;
+
+        if (front == NULL)
+            rear = NULL;
+
+        delete p;
+    }
+}
+
+void displayQueue()
+{
+    Node *p = front;
+    cout << "Queue: ";
+    while (p != NULL)
+    {
+        cout << p->data << " ";
+        p = p->next;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int ch;
+
+    do
+    {
+        cout << "\n1.Push\n2.Pop\n3.Display Stack";
+        cout << "\n4.Enqueue\n5.Dequeue\n6.Display Queue";
+        cout << "\n7.Exit\nEnter choice: ";
+        cin >> ch;
+
+        switch (ch)
+        {
+        case 1: push(); break;
+        case 2: pop(); break;
+        case 3: displayStack(); break;
+        case 4: enqueue(); break;
+        case 5: dequeue(); break;
+        case 6: displayQueue(); break;
+        case 7: cout << "Program Ended\n"; break;
+        default: cout << "Invalid Choice\n";
+        }
+    } while (ch != 7);
+
+    return 0;
+}
