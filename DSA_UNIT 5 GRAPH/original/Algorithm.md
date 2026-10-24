@@ -18,7 +18,5 @@
 
 9 Display the selected power lines and calculate their total cost.
 
-
-
-Stop the program.
+10 Stop the program.
 
