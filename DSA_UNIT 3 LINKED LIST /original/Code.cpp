@@ -1,10 +1,9 @@
-## code
-
 #include <iostream>
 #include <string>
 using namespace std;
 
-struct Node {
+struct Node
+{
     int acc;
     string name;
     float bal;
@@ -13,7 +12,8 @@ struct Node {
 
 Node *head = NULL;
 
-void insert() {
+void insert() 
+{
     Node *p = new Node;
 
     cout << "Enter Account Number, Name and Balance: ";
@@ -25,19 +25,22 @@ void insert() {
     cout << "Account Inserted Successfully\n";
 }
 
-void deleteAcc() {
+void deleteAcc() 
+{
     int x;
     cout << "Enter Account Number to Delete: ";
     cin >> x;
 
     Node *p = head, *q = NULL;
 
-    while (p != NULL && p->acc != x) {
+    while (p != NULL && p->acc != x)
+        {
         q = p;
         p = p->next;
     }
 
-    if (p == NULL) {
+    if (p == NULL) 
+    {
         cout << "Account Not Found\n";
         return;
     }
@@ -51,15 +54,18 @@ void deleteAcc() {
     cout << "Account Deleted Successfully\n";
 }
 
-void search() {
+void search() 
+{
     int x;
     cout << "Enter Account Number to Search: ";
     cin >> x;
 
     Node *p = head;
 
-    while (p != NULL) {
-        if (p->acc == x) {
+    while (p != NULL)
+        {
+        if (p->acc == x) 
+        {
             cout << "Account Number: " << p->acc
                  << "\nName: " << p->name
                  << "\nBalance: " << p->bal << endl;
@@ -71,15 +77,18 @@ void search() {
     cout << "Not Found\n";
 }
 
-void display() {
+void display() 
+{
     Node *p = head;
 
-    if (p == NULL) {
+    if (p == NULL)
+    {
         cout << "No Accounts Available\n";
         return;
     }
 
-    while (p != NULL) {
+    while (p != NULL) 
+    {
         cout << "Account Number: " << p->acc
              << " Name: " << p->name
              << " Balance: " << p->bal << endl;
@@ -88,7 +97,8 @@ void display() {
     }
 }
 
-int main() {
+int main() 
+{
     int ch;
 
     do {
